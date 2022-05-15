@@ -41,7 +41,7 @@ class Public::RegistrationsController < Devise::RegistrationsController
   protected
 
   def after_sign_in_path_for(resource)
-      public_users_index_path
+      public_users_path
   end
 
   # If you have extra params to permit, append them to the sanitizer.
