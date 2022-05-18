@@ -12,15 +12,19 @@ Rails.application.routes.draw do
       resource :relationships, only: [:create, :destroy]
       get 'followings' => 'relationships#followings', as: 'followings'
   	  get 'followers' => 'relationships#followers', as: 'followers'
+  	  get '/users/out' => '/public/users#out'
+  	  patch '/users/quit' => '/public/users#quit'
     end
-    
+
     get '/search', to: 'searches#search'
   end
-  
+
   namespace :admin do
+    resources :books, only: [:index, :show, :destroy]
+    resources :users, only: [:index, :show, :destroy]
     resources :genres, only: [:index, :create, :edit, :update]
   end
-  
+
   devise_for :admin, skip: [:registrations, :passwords], controllers: {
     sessions: "admin/sessions"
   }

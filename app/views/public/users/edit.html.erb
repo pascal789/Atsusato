@@ -5,17 +5,22 @@
     <%= form_with model:@user, url: public_user_path do |f| %>
       <%#= render 'layouts/errors', obj: @user %>
       <div class="form-group">
-        <%= f.label :name %>
+        <%= f.label :ユーザー名 %>
         <%= f.text_field :name, class: "form-control name" %>
       </div>
-
       <div class="form-group">
-        <%= f.label :introduction %>
+        <%= f.label :画像 %>
+        <%= f.file_field :profile_image %>
+      </div>
+      <div class="form-group">
+        <%= f.label :好きな漫画 %>
         <%= f.text_area :introduction, class: "form-control introduction" %>
       </div>
       <div class="form-group">
         <%= f.submit class: 'btn btn-secondary' %>
+        <%= link_to "退会する", public_user_users_out_path(@user), class: "btn btn-danger ml-5" %>
       </div>
     <% end %>
+    </div>
   </div>
 </div>

@@ -19,11 +19,11 @@ class Public::SessionsController < Devise::SessionsController
   # end
 
   protected
-  
+
   def after_sign_in_path_for(resource)
       root_path
   end
-  
+
   # 退会しているかを判断するメソッド
   def user_state
     # 【処理内容1】入力されたemailからアカウントを1件取得
@@ -31,9 +31,21 @@ class Public::SessionsController < Devise::SessionsController
     # アカウントを取得できなかった場合、このメソッドを終了する
     return if !@user
     # 【処理内容2】取得したアカウントのパスワードと入力されたパスワードが一致してるかを判別
-    if @user.valid_password?(params[:user][:password]) && (@user.is_status == true )
+    if @user.valid_password?(params[:user][:password]) && (@user.is_deleted == true )
       # 【処理内容3】is_statusがtrueだった場合
        redirect_to new_user_registration_path
+    end
+  end
+  
+  def reject_user
+    @user = User.find_by(name: params[:user][:name])
+    if @user 
+      if @user.valid_password?(params[:user][:password]) && (@user.is_deleted == false)
+        flash[:notice] = "退会済みです。再度ご登録をしてご利用ください。"
+        redirect_to new_user_registration
+      else
+        flash[:notice] = "項目を入力してください"
+      end
     end
   end
 
@@ -41,4 +53,5 @@ class Public::SessionsController < Devise::SessionsController
   # def configure_sign_in_params
   #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
   # end
+  
 end

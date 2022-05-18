@@ -5,8 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :books
-  has_many :favorite, dependent: :destroy
-  has_many :book_comment, dependent: :destroy
+  has_many :favorites, dependent: :destroy
+  has_many :book_comments, dependent: :destroy
 
   # 自分がフォローされる（被フォロー）側の関係性
   has_many :reverse_of_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
@@ -50,5 +50,9 @@ class User < ApplicationRecord
     else
       User.where('name LIKE ?', '%' + content + '%')
     end
+  end
+  # is_deletedがfalseならtrueを返すようにしている
+  def active_for_authentication?
+    super && (is_deleted == false)
   end
 end

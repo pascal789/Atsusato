@@ -8,7 +8,7 @@ class Public::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-
+    @books = @user.books
   end
 
   def edit
@@ -23,6 +23,18 @@ class Public::UsersController < ApplicationController
     end
   end
 
+  def out
+  end
+
+  def quit
+    @user = current_user
+    # is_deletedカラムをtrueに変更することにより削除フラグを立てる
+    @user.update(is_deleted: true)
+    reset_session
+    flash[:notice] = "退会処理を実行いたしました"
+    redirect_to root_path
+  end
+
   private
 
   def user_params
@@ -35,5 +47,4 @@ class Public::UsersController < ApplicationController
       redirect_to public_user_path(current_user)
     end
   end
-
 end

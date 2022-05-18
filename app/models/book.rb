@@ -1,15 +1,15 @@
 class Book < ApplicationRecord
   has_one_attached :image
   belongs_to :user
-  has_many :favorite, dependent: :destroy
-  has_many :book_comment, dependent: :destroy
+  has_many :favorites, dependent: :destroy
+  has_many :book_comments, dependent: :destroy
   belongs_to :genre
 
   validates :title,presence:true
   validates :introduction,presence:true,length:{maximum:200}
 
   def favorited_by?(user)
-    favorites.where(user_id: user.id).exists?
+    favorites.exists?(user_id: user.id)
   end
 
   def self.search_for(content, method)

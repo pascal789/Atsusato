@@ -1,8 +1,65 @@
 <div class='container'>
   <div class='row'>
-    <div class='col-md-8 offset-md-1'>
+    <div class='col-lg-4'>
   		<h2>漫画詳細</h2>
-
+      <table class='table'>
+        <tr>
+          <th>タイトル</th>
+          <td><%= @book.title %></td>
+        </tr>
+        <tr>
+          <th>ユーザー</th>
+          <td><%= @book.user.name %></td>
+        </tr>
+        <tr>
+          <th>ジャンル</th>
+          <td><%= @book.genre.name %></td>
+        </tr>
+        <tr>
+          <th>いいね数</th>
+          <td><%= @book.favorites.count %></td>
+        </tr>
+        <tr>
+          <th>コメント数</th>
+          <td><%= @book.book_comments.count %></td>
+        </tr>
+        <tr>
+          <th>レビュー</th>
+          <td><%= @book.introduction %></td>
+        </tr>
+        <tr>
+          <% if @book.user == current_user %>
+            <td><%= link_to 'Destroy', public_book_path(@book.id), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger destroy_book_#{@book.id}" %></td>
+          <% end %>
+        </tr>
+      </table>
+    </div>
+    <div class='col-lg-8'>
+      <h2>コメント欄</h2>
+      <div class='row'>
+        <%= form_with model:@book_comment,url: public_book_book_comments_path(@book),class:"w-100" do |f| %>
+          <%= f.text_area :comment, rows:'5',placeholder: "コメントをここに", class: "form-control comment-textarea" %>
+          <%= f.submit "入力完了", class: 'btn btn-success' %>
+        <% end %>
+      </div>
+      <table class='table table-hover table-inverse'>
+        <div class='row'>
+          <thead>
+            <tr>
+              <th>ユーザー</th>
+              <th>コメント</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @book_comments.each do |book_comment| %>
+              <tr>
+                <td><%= book_comment.user.name %></td>
+                <td><%= book_comment.comment %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </div>
