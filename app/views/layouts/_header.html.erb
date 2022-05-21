@@ -3,9 +3,9 @@
     <div class="container">
       <div class="mr-5 border rounded p-2 bg-warning border-white">
         <% if admin_signed_in? %>
-        <%= link_to "集まれ漫画の里", admin_orders_path, class:"header-title navbar-brand"%>
+          <%= link_to "集まれ漫画の里", admin_users_path, class:"header-title navbar-brand"%>
         <% else %>
-        <%= link_to "集まれ漫画の里", root_path, class:"header-title navbar-brand"%>
+          <%= link_to "集まれ漫画の里", root_path, class:"header-title navbar-brand"%>
         <% end %>
       </div>
 
@@ -17,6 +17,11 @@
 
         <!--顧客側がログインした場合-->
         <% if user_signed_in? %>
+           <li>
+            <%=  link_to new_public_book_path, class: 'nav-link text-white border rounded mx-2 bg-success' do %>
+            <i class="fas fa-shopping-cart"></i>投稿する
+            <% end %>
+          </li>
           <li>
             <%= link_to public_user_path(current_user), class: 'nav-link text-white border rounded mr-2 bg-success' do %>
             <i class="fas fa-users"></i>マイページ
@@ -68,27 +73,17 @@
             <% end %>
           </li>
           <li>
-            <%= link_to items_path, class: 'nav-link text-white border rounded mx-2 bg-success' do %>
-            <i class="fas fa-cheese"></i>商品一覧
-            <% end %>
-          </li>
-          <li>
-            <%= link_to new_customer_registration_path,class: 'nav-link text-white border rounded mx-2 bg-success' do %>
+            <%= link_to new_user_registration_path,class: 'nav-link text-white border rounded mx-2 bg-success' do %>
             <i class="fas fa-user-plus"></i>新規登録
             <% end %>
           </li>
           <li>
-            <%= link_to customer_session_path ,class: 'nav-link text-white border rounded ml-2 bg-success' do %>
+            <%= link_to new_user_session_path ,class: 'nav-link text-white border rounded ml-2 bg-success' do %>
             <i class="fas fa-sign-in-alt"></i> ログイン
             <% end %>
           </li>
         <% end %>
-          <li class="ml-2">
-            <%= form_with url: book_path, method: :get, local: true do |f| %>
-            <input id="sbox4"  id="s" name="s" type="text" placeholder="Search">
-            <button id="sbtn4" type="submit"><i class="fas fa-search"></i>
-            </button>
-            <% end %>
+
           </li>
         </ul>
       </div>

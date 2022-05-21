@@ -2,34 +2,7 @@
   <div class='row'>
     <div class='col-md-8'>
       <h2>ユーザー一覧</h2>
-  　　<table class='table'>
-        <thead>
-          <tr>
-            <th>画像</th>
-            <th>ユーザー名</th>
-            <th></th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @users.each do |user| %>
-            <tr>
-              <td><%#= image_tag user.get_profile_image, size: '50x50' %></td>
-              <td><%= link_to user.name , public_user_path(user.id), class: "user_#{user.id}" %></td>
-              <td>
-                <% if current_user != user %>
-                  <% if current_user.following?(user) %>
-                    <%= link_to "フォロー外す", public_user_relationships_path(user.id), method: :delete, class: "btn btn-info" %>
-                  <% else %>
-                    <%= link_to "フォローする", public_user_relationships_path(user.id), method: :post, class: "btn btn-success" %>
-                  <% end %>
-                <% end %>
-              </td>
-              <td></td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
+  　　<%= render 'index',users: @users %>
     </div>
   </div>
 </div>

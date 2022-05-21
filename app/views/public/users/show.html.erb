@@ -3,7 +3,7 @@
     <div class='col-md-4'>
       <h2>ユーザーページ</h2>
       <table class='table'>
-        <tr><%#= image_tag @user.get_profile_image, size:'100x100' %></tr>
+        <tr><%= image_tag @user.get_profile_image, size:'100x100' %></tr>
         <tr>
       	  <th>ユーザー名</th>
       	  <th><%= @user.name %></th>
