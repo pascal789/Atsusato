@@ -46,7 +46,7 @@
         <!--管理者がログインしていた場合-->
         <% elsif admin_signed_in? %>
            <li>
-            <%= link_to admin_book_path, class: 'nav-link text-white border rounded mr-2 bg-success' do %>
+            <%= link_to admin_books_path, class: 'nav-link text-white border rounded mr-2 bg-success' do %>
             <i class="fas fa-cheese"></i>マンガ
             <% end %>
           </li>
@@ -56,7 +56,7 @@
             <% end %>
           </li>
           <li>
-            <%=  link_to admin_genre_path, class: 'nav-link text-white border rounded mx-2 bg-success' do %>
+            <%=  link_to admin_genres_path, class: 'nav-link text-white border rounded mx-2 bg-success' do %>
             <i class="fas fa-list-ul"></i>ジャンル一覧
             <% end %>
           </li>

@@ -3,13 +3,14 @@ class Public::FavoritesController < ApplicationController
     book = Book.find(params[:book_id])
     @favorite = current_user.favorites.new(book_id: book.id)
     @favorite.save
-    redirect_to public_books_path(book)
+    #render 'public/favorites/create'
+    p "createcreatecreatecreatecreatecreate"
   end
 
   def destroy
     book = Book.find(params[:book_id])
     @favorite = current_user.favorites.find_by(book_id: book.id)
     @favorite.destroy
-    redirect_to public_books_path(book)
+
   end
 end

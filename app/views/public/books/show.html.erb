@@ -1,6 +1,6 @@
 <div class='container'>
   <div class='row'>
-    <div class='col-lg-4'>
+    <div class='col-lg-5'>
   		<h2>漫画詳細</h2>
       <table class='table'>
         <tr>
@@ -16,10 +16,6 @@
           <td><%= @book.genre.name %></td>
         </tr>
         <tr>
-          <th>いいね数</th>
-          <td><%= @book.favorites.count %></td>
-        </tr>
-        <tr>
           <th>コメント数</th>
           <td><%= @book.book_comments.count %></td>
         </tr>
@@ -30,11 +26,16 @@
         <tr>
           <% if @book.user == current_user %>
             <td><%= link_to 'Destroy', public_book_path(@book.id), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger destroy_book_#{@book.id}" %></td>
+          <% else %>
+            <th>いいね数</th>
+            <td class=<%= "favorite-" + @book.id.to_s %> >
+              <%= render "public/favorites/btn", book: @book %>
+            </td>
           <% end %>
         </tr>
       </table>
     </div>
-    <div class='col-lg-8'>
+    <div class='col-lg-7'>
       <h2>コメント欄</h2>
       <div class='row'>
         <%= form_with model:@book_comment,url: public_book_book_comments_path(@book),class:"w-100" do |f| %>

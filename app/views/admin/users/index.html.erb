@@ -14,8 +14,8 @@
         <tbody>
           <% @users.each do |user| %>
             <tr>
-              <td><%#= image_tag user.get_profile_image, size: '50x50' %></td>
-              <td><%= link_to user.name , public_user_path(user.id), class: "user_#{user.id}" %></td>
+              <td><%= image_tag user.get_profile_image, size: '50x50' %></td>
+              <td><%= link_to user.name , admin_user_path(user.id), class: "user_#{user.id}" %></td>
               
               <td></td>
             </tr>

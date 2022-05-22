@@ -1,6 +1,6 @@
 <h2>フォロワー</h2>
 <% if @users.exists? %>
-  <%= render '/users/index', users: @users %>
+  <%= render 'public/users/index', users: @users %>
 <% else %>
   <h4>ユーザーはいません</h4>
 <% end %>
