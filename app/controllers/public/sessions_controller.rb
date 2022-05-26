@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Public::SessionsController < Devise::SessionsController
-  before_action :configure_sign_in_params, only: [:create]
+  # before_action :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in
   # def new
@@ -21,7 +21,7 @@ class Public::SessionsController < Devise::SessionsController
   protected
 
   def after_sign_in_path_for(resource)
-      root_path
+      public_books_path
   end
 
   # 退会しているかを判断するメソッド
@@ -36,10 +36,10 @@ class Public::SessionsController < Devise::SessionsController
        redirect_to new_user_registration_path
     end
   end
-  
+
   def reject_user
     @user = User.find_by(name: params[:user][:name])
-    if @user 
+    if @user
       if @user.valid_password?(params[:user][:password]) && (@user.is_deleted == false)
         flash[:notice] = "退会済みです。再度ご登録をしてご利用ください。"
         redirect_to new_user_registration
@@ -53,5 +53,5 @@ class Public::SessionsController < Devise::SessionsController
   # def configure_sign_in_params
   #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
   # end
-  
+
 end
