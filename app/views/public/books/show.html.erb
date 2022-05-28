@@ -37,28 +37,14 @@
     </div>
     <div class='col-lg-7'>
       <h2>コメント欄</h2>
-      <div class='row'>
-        <%= form_with model:@book_comment,url: public_book_book_comments_path(@book),class:"w-100" do |f| %>
-          <%= f.text_area :comment, rows:'5',placeholder: "コメントをここに", class: "form-control comment-textarea" %>
-          <%= f.submit "入力完了", class: 'btn btn-success' %>
-        <% end %>
-      </div>
-      <table class='table table-hover table-inverse'>
+      <div class="book-comments-index">
         <div class='row'>
-          <thead>
-            <tr>
-              <th>ユーザー</th>
-              <th>コメント</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% @book_comments.each do |book_comment| %>
-              <tr>
-                <td><%= book_comment.user.name %></td>
-                <td><%= book_comment.comment %></td>
-              </tr>
-            <% end %>
-          </tbody>
+          <%= render "public/book_comments/form", book: @book, book_comment: @book_comment %>
+        </div>
+        <table class='table table-hover table-inverse'>
+          <div class='row'>
+            <%= render "public/book_comments/index", book_comments: @book_comments %>
+          </div>
         </table>
       </div>
     </div>

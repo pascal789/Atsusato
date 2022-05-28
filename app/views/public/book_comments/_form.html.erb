@@ -1,0 +1,4 @@
+<%= form_with model:book_comment,url: public_book_book_comments_path(book), class:"w-100" do |f| %>
+  <%= f.text_area :comment, rows:'5',placeholder: "コメントをここに", class: "form-control comment-textarea" %>
+  <%= f.submit "入力完了", class: 'btn btn-success' %>
+<% end %>

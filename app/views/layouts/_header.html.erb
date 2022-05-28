@@ -19,22 +19,22 @@
         <% if user_signed_in? %>
            <li>
             <%=  link_to new_public_book_path, class: 'nav-link text-white border rounded mx-2 bg-success' do %>
-            <i class="fas fa-shopping-cart"></i>投稿する
+            <i class="fas fa-edit"></i>投稿する
             <% end %>
           </li>
           <li>
             <%= link_to public_user_path(current_user), class: 'nav-link text-white border rounded mr-2 bg-success' do %>
-            <i class="fas fa-users"></i>マイページ
+            <i class="fas fa-user"></i>マイページ
             <% end %>
           </li>
           <li>
             <%=  link_to public_books_path, class: 'nav-link text-white border rounded mx-2 bg-success' do %>
-            <i class="fas fa-cheese"></i>マンガ
+            <i class="fas fa-book-open"></i>マンガ
             <% end %>
           </li>
           <li>
             <%=  link_to public_users_path, class: 'nav-link text-white border rounded mx-2 bg-success' do %>
-            <i class="fas fa-shopping-cart"></i>ユーザー
+            <i class="fas fa-users"></i>ユーザー
             <% end %>
           </li>
           <li>
@@ -47,7 +47,7 @@
         <% elsif admin_signed_in? %>
            <li>
             <%= link_to admin_books_path, class: 'nav-link text-white border rounded mr-2 bg-success' do %>
-            <i class="fas fa-cheese"></i>マンガ
+            <i class="fas fa-book-open"></i>マンガ
             <% end %>
           </li>
           <li>
@@ -69,7 +69,7 @@
         <% else %>
           <li>
             <%= link_to about_path, class: 'nav-link text-white border rounded mr-2 bg-success' do %>
-            <i class="fas fa-link"></i> About
+            <i class="fas fa-link"></i>About
             <% end %>
           </li>
           <li>
