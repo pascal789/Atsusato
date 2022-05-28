@@ -9,16 +9,16 @@ class Admin::GenresController < ApplicationController
       render :index
     end
   end
-  
+
   def index
-    @genres = Genre.all
+    @genres = Genre.page(params[:page])
     @genre = Genre.new
   end
 
   def edit
     @genre = Genre.find(params[:id])
   end
-  
+
   def update
     @genre = Genre.find(params[:id])
    if @genre.update(genre_params)
@@ -29,7 +29,7 @@ class Admin::GenresController < ApplicationController
       render :edit
    end
   end
-  
+
   private
 
   def genre_params

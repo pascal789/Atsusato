@@ -18,6 +18,7 @@
               <td><%= book.genre.name %></td>
             </tr>
           <% end %>
+          <%= paginate @books %>
         </tbody>
       </table>
     </div>

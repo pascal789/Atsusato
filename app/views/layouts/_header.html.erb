@@ -15,8 +15,31 @@
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav ml-auto">
 
+        <!--管理者がログインしていた場合-->
+        <% if admin_signed_in? %>
+           <li>
+            <%= link_to admin_books_path, class: 'nav-link text-white border rounded mr-2 bg-success' do %>
+            <i class="fas fa-book-open"></i>マンガ
+            <% end %>
+          </li>
+          <li>
+            <%=  link_to admin_users_path, class: 'nav-link text-white border rounded mx-2 bg-success' do %>
+            <i class="fas fa-users"></i>ユーザー
+            <% end %>
+          </li>
+          <li>
+            <%=  link_to admin_genres_path, class: 'nav-link text-white border rounded mx-2 bg-success' do %>
+            <i class="fas fa-list-ul"></i>ジャンル一覧
+            <% end %>
+          </li>
+          <li>
+            <%= link_to destroy_admin_session_path, method: :delete, class: 'nav-link text-white border rounded ml-2 bg-success' do %>
+            <i class="fas fa-sign-out-alt"></i>ログアウト
+            <% end %>
+          </li>
+          
         <!--顧客側がログインした場合-->
-        <% if user_signed_in? %>
+        <% elsif user_signed_in? %>
            <li>
             <%=  link_to new_public_book_path, class: 'nav-link text-white border rounded mx-2 bg-success' do %>
             <i class="fas fa-edit"></i>投稿する
@@ -43,28 +66,6 @@
             <% end %>
           </li>
 
-        <!--管理者がログインしていた場合-->
-        <% elsif admin_signed_in? %>
-           <li>
-            <%= link_to admin_books_path, class: 'nav-link text-white border rounded mr-2 bg-success' do %>
-            <i class="fas fa-book-open"></i>マンガ
-            <% end %>
-          </li>
-          <li>
-            <%=  link_to admin_users_path, class: 'nav-link text-white border rounded mx-2 bg-success' do %>
-            <i class="fas fa-users"></i>ユーザー
-            <% end %>
-          </li>
-          <li>
-            <%=  link_to admin_genres_path, class: 'nav-link text-white border rounded mx-2 bg-success' do %>
-            <i class="fas fa-list-ul"></i>ジャンル一覧
-            <% end %>
-          </li>
-          <li>
-            <%= link_to destroy_admin_session_path, method: :delete, class: 'nav-link text-white border rounded ml-2 bg-success' do %>
-            <i class="fas fa-sign-out-alt"></i>ログアウト
-            <% end %>
-          </li>
         <!--ログインしていない場合-->
         <% else %>
           <li>
