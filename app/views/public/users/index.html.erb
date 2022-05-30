@@ -3,6 +3,7 @@
     <div class='col-md-8'>
       <h2>ユーザー一覧</h2>
       <%= render 'index',users: @users %>
+      <%= paginate @users %>
     </div>
   </div>
 </div>
