@@ -17,7 +17,7 @@
 
         <!--管理者がログインしていた場合-->
         <% if admin_signed_in? %>
-           <li>
+          <li>
             <%= link_to admin_books_path, class: 'nav-link text-white border rounded mr-2 bg-success' do %>
             <i class="fas fa-book-open"></i>マンガ
             <% end %>
@@ -84,8 +84,6 @@
             <% end %>
           </li>
         <% end %>
-
-          </li>
         </ul>
       </div>
     </div>
